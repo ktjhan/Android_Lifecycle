@@ -5,6 +5,7 @@ import android.content.Context
 import android.content.Intent
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
+import android.util.Log
 import android.view.View
 import android.view.WindowManager
 import android.widget.EditText
@@ -19,6 +20,7 @@ class DetailsActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_details)
+        Log.i("Lifecycle", "onCreate")
 
         val intent = intent
         data = intent.getSerializableExtra("object") as ImageData
@@ -44,6 +46,7 @@ class DetailsActivity : AppCompatActivity() {
         text_uri.text = data?.fileUri.toString()
         text_description.text = data?.description
         edit_description.setText(data?.description)
+        Log.i("Lifecycle", "onStart()")
     }
 
     override fun onBackPressed() {
@@ -53,5 +56,15 @@ class DetailsActivity : AppCompatActivity() {
         resultIntent.putExtra("object", data)
         setResult(Activity.RESULT_OK, resultIntent)
         finish()
+    }
+
+    override fun onPause() {
+        super.onPause()
+        Log.i("Lifecycle","onPause()")
+    }
+
+    override fun onDestroy() {
+        super.onDestroy()
+        Log.i("Lifecycle","onDestroy")
     }
 }

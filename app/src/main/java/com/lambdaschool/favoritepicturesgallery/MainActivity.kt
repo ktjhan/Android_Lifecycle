@@ -17,6 +17,7 @@ import android.widget.TextView
 import kotlinx.android.synthetic.main.activity_main.*
 
 import java.util.ArrayList
+import kotlin.math.log
 
 class MainActivity : AppCompatActivity() {
 
@@ -28,6 +29,7 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
         val context = this
+        Log.i("Lifecycle", "onCreate")
 
         imageList = ArrayList()
 
@@ -85,5 +87,15 @@ class MainActivity : AppCompatActivity() {
 
         internal const val REQUEST_IMAGE_GET = 1
         internal const val EDIT_IMAGE_REQUEST = 2
+    }
+
+    override fun onPause() {
+        super.onPause()
+        Log.i("Lifecycle", "onPause()")
+    }
+
+    override fun onDestroy() {
+        super.onDestroy()
+        Log.i("Lifecycle", "onDestroy")
     }
 }
